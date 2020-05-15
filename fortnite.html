@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+   <meta property="og:image" content="https://www.lootlake.info/img/og2.jpg">
+   <meta property="og:image:width" content="2435">
+   <meta property="og:image:height" content="2435">   
+   <!-- Leaflet's CSS -->
+<link rel="stylesheet" href="https://www.lootlake.info/leaflet/leaflet.css?v=e11ec6ab5c73d60cfff9a535ec01ece6">
+<!-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
+   integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+   crossorigin=""/> -->
+<link rel="stylesheet" href="style.css">   
+<style>
+/*html, body, #map {height:100%;width:100%;padding:0px;margin:0px;}
+.leaflet-popup { width: 201px!important;}*/
+</style>
+</head>
+
+<body>
+
+<div id="toggle-sidebar" data-tooltip data-tooltip-left></div>
+   <div id="resize-sidebar" data-tooltip="Resize sidebar" data-tooltip-left>
+      <svg width="24" height="24" viewBox="0 0 24 24"><path d="M6 13v4l-6-5 6-5v4h3v2h-3zm9-2v2h3v4l6-5-6-5v4h-3zm-4-6v14h2v-14h-2z"/></svg>
+   </div>
+
+   <div id="sidebar">
+      <div id="sidebar-top">
+         <a href="/" id="logo"><div id="eye"><div id="lid"></div></div></a>
+         <div class="menu">
+            <a class="nav-item" href="/leaked-skins">Leaked Skins <span class="badge" id="leaked-count"></span></a>
+            <script>document.write('\x3c\x61\x20\x68\x72\x65\x66\x3d\x22\x6d\x61\x69\x6c\x74\x6f\x3a\x63\x6f\x6e\x74\x61\x63\x74\x40\x6c\x6f\x6f\x74\x6c\x61\x6b\x65\x2e\x69\x6e\x66\x6f\x22\x20\x63\x6c\x61\x73\x73\x3d\x22\x6e\x61\x76\x2d\x69\x74\x65\x6d\x22\x3e\x43\x6f\x6e\x74\x61\x63\x74\x3c\x2f\x61\x3e');</script>
+         </div>
+
+         <div id="specials"></div>
+         <div id="weeks"></div>
+      </div>
+
+      <div id="sidebar-bottom">
+         <div class="menu attribution">
+            Special thanks to <a class="nav-item" href="https://twitter.com/ImSpeedyGonzale" target="_blank">ImSpeedyGonzalez</a> &amp; <a class="nav-item" href="/thanks">contributors</a>
+         </div>
+      </div>
+   </div>
+   
+   <div id="map">
+      <div id="contextmenu"></div>
+   </div>
+
+
+<!-- <img src="./icons/201.png" class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive" alt="" tabindex="0" style="margin-left: -20px; margin-top: -20px; width: 40px; height: 40px; transform: translate3d(391px, 153px, 0px); z-index: 153; outline: none;">  
+
+<img src="./icons/204.png" class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive" alt="" tabindex="0" style="margin-left: -20px; margin-top: -20px; width: 40px; height: 40px; transform: translate3d(395px, 240px, 0px); z-index: 153; outline: none;">
+
+-->  
+
+<!-- <div id="map" class="leaflet-container leaflet-touch leaflet-grab leaflet-touch-drag leaflet-touch-zoom" style="left: 360px; outline: none;" tabindex="0">
+      <div id="contextmenu"></div>
+   <div class="leaflet-pane leaflet-map-pane" style="left: -438.906px; top: -252.758px;"><div class="leaflet-pane leaflet-tile-pane"></div><div class="leaflet-pane leaflet-shadow-pane"></div><div class="leaflet-pane leaflet-overlay-pane"><img class="leaflet-image-layer" src="/maps/2023.jpg" alt="" style="z-index: 1; left: -1094px; top: -332px; width: 4096px; height: 4096px;"></div><div class="leaflet-pane leaflet-marker-pane"><div class="leaflet-marker-icon label leaflet-zoom-hide leaflet-interactive" tabindex="0" style="left: 1386px; top: 190px; z-index: 190;"><div>CRAGGY CLIFFS</div></div><div class="leaflet-marker-icon label leaflet-zoom-hide leaflet-interactive" tabindex="0" style="left: 2426px; top: 428px; z-index: 428;"><div>STEAMY STACKS</div></div><div class="leaflet-marker-icon label leaflet-zoom-hide leaflet-interactive" tabindex="0" style="left: 705px; top: 727px; z-index: 727;"><div class="">PLEASANT PARK</div></div><div class="leaflet-marker-icon label leaflet-zoom-hide leaflet-interactive" tabindex="0" style="left: -163px; top: 1081px; z-index: 1081;"><div>SWEATY SANDS</div></div><div class="leaflet-marker-icon label leaflet-zoom-hide leaflet-interactive" tabindex="0" style="left: 1653px; top: 1224px; z-index: 1224;"><div>FRENZY FARM</div></div><div class="leaflet-marker-icon label leaflet-zoom-hide leaflet-interactive" tabindex="0" style="left: 586px; top: 1483px; z-index: 1483;"><div>SALTY SPRINGS</div></div><div class="leaflet-marker-icon label leaflet-zoom-hide leaflet-interactive" tabindex="0" style="left: -261px; top: 1873px; z-index: 1873;"><div>HOLLY HEDGES</div></div><div class="leaflet-marker-icon label leaflet-zoom-hide leaflet-interactive" tabindex="0" style="left: 2668px; top: 1437px; z-index: 1437;"><div>DIRTY DOCKS</div></div><div class="leaflet-marker-icon label leaflet-zoom-hide leaflet-interactive" tabindex="0" style="left: 400px; top: 2110px; z-index: 2110;"><div>WEEPING WOODS</div></div><div class="leaflet-marker-icon label leaflet-zoom-hide leaflet-interactive" tabindex="0" style="left: 252px; top: 2617px; z-index: 2617;"><div>SLURPY SWAMP</div></div><div class="leaflet-marker-icon label leaflet-zoom-hide leaflet-interactive" tabindex="0" style="left: 1357px; top: 3042px; z-index: 3042;"><div>MISTY MEADOWS</div></div><div class="leaflet-marker-icon label leaflet-zoom-hide leaflet-interactive" tabindex="0" style="left: 1786px; top: 2432px; z-index: 2432;"><div>LAZY LAKE</div></div><div class="leaflet-marker-icon label leaflet-zoom-hide leaflet-interactive" tabindex="0" style="left: 2436px; top: 2268px; z-index: 2268;"><div>RETAIL ROW</div></div><div class="leaflet-marker-icon label leaflet-zoom-hide leaflet-interactive" tabindex="0" style="left: -327px; top: 103px; z-index: 103;"><div>THE SHARK</div></div><div class="leaflet-marker-icon label leaflet-zoom-hide leaflet-interactive" tabindex="0" style="left: 2677px; top: -3px; z-index: -3;"><div>THE YACHT</div></div><div class="leaflet-marker-icon label leaflet-zoom-hide leaflet-interactive" tabindex="0" style="left: 1028px; top: 1619px; z-index: 1619;"><div>THE AGENCY</div></div><div class="leaflet-marker-icon label leaflet-zoom-hide leaflet-interactive" tabindex="0" style="left: 1127px; top: 1236px; z-index: 1236;"><div>RISKY REELS</div></div><div class="leaflet-marker-icon label leaflet-zoom-hide leaflet-interactive" tabindex="0" style="left: 2659px; top: 2012px; z-index: 2012;"><div>THE GROTTO</div></div><div class="leaflet-marker-icon label leaflet-zoom-hide leaflet-interactive" tabindex="0" style="left: -337px; top: 2889px; z-index: 2889;"><div>THE RIG</div></div></div><div class="leaflet-pane leaflet-tooltip-pane"></div><div class="leaflet-pane leaflet-popup-pane"></div></div><div class="leaflet-control-container"><div class="leaflet-top leaflet-left"></div><div class="leaflet-top leaflet-right"><div class="leaflet-control-zoom leaflet-bar leaflet-control"><a class="leaflet-control-zoom-in" href="#" data-tooltip="Zoom in" data-tooltip-right="" role="button" aria-label="Zoom in">+</a><a class="leaflet-control-zoom-out" href="#" data-tooltip="Zoom out" data-tooltip-right="" role="button" aria-label="Zoom out">−</a></div><div class="leaflet-bar leaflet-control"><a class="leaflet-draw-open" href="#" data-tooltip-right="" data-tooltip="Draw on map"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M7.127 22.562l-7.127 1.438 1.438-7.128 5.689 5.69zm1.414-1.414l11.228-11.225-5.69-5.692-11.227 11.227 5.689 5.69zm9.768-21.148l-2.816 2.817 5.691 5.691 2.816-2.819-5.691-5.689z"></path></svg></a></div></div><div class="leaflet-bottom leaflet-left"></div><div class="leaflet-bottom leaflet-right"><div class="leaflet-control-attribution leaflet-control">Not affiliated with Epic Games</div></div></div></div> -->   
+   
+   <div id="message"></div>
+
+ <!-- Leaflet's JS -->
+<script src="https://www.lootlake.info/leaflet/leaflet.js?v=8e0b8d2790cc737ab4ba07683108ecf3"></script>
+<!-- <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+crossorigin=""></script> -->
+<script src="data2.js"></script>
+<script src="index2.js"></script>
+<script>
+// var lati = '41.49512'; // 41.49512, 2.36385
+// var logi = '2.36385';
+
+// var map = L.map('map').setView([lati, logi], 13);
+
+// L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+// 		subdomains:['mt0','mt1','mt2','mt3']
+// }).addTo(map);
+
+// var marker = L.marker([lati, logi]).addTo(map);
+// var marker;
+// function onMapClick(e) {
+//         marker = new L.Marker(e.latlng, {draggable:true});
+//         map.addLayer(marker);
+//         marker.bindPopup("<b>Hello world!</b><br />I am a popup.").openPopup();
+// };
+// map.removeLayer(marker)
+</script>
+</body>
+</html>
