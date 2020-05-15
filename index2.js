@@ -451,22 +451,20 @@ var drawLayers = new L.FeatureGroup;
 map.addLayer(drawLayers);
 
     
-console.log(drawLayers._map._layers) //_latlng
-
-for (var i = drawLayers.length - 1; i >= 0; i++) {
-    //Things[i]
-    console.log(drawLayers._map._layers[i]._latlng)
-}
-
-
-// each(Data.drawLayers, function (ml) {
-
+map.eachLayer(function (layer) {
     
-//     if (map._layers[ml].feature) {
+    if(layer._icon && layer._icon.className.includes('leaflet-marker-icon')) {
+        var popUpTextArray = [];
+        //console.log(layer._latlng)
+        layer.bindPopup("Coords: "+layer._latlng.lat+", "+layer._latlng.lng);
+    }
+});
 
-//         console.log(drawLayers._map._layers);
-//     }
-// });
+map.on('click', function(e) {    
+    var popup = L.popup().setLatLng(e.latlng)
+      .setContent(e.latlng.lat.toFixed(3)+", "+e.latlng.lng.toFixed(3))
+      .openOn(map);
+});
 
 var openDrawControl = L.Control.extend({
         options: {
